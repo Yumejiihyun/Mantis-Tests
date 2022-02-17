@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace MantisTests
+namespace Mantis_Tests
 {
     public class HelperBase
     {

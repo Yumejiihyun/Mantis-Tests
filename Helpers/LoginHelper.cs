@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 
-namespace MantisTests
+namespace Mantis_Tests
 {
     public class LoginHelper : HelperBase
     {

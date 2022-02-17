@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace MantisTests
+namespace Mantis_Tests
 {
     [SetUpFixture]
     public class TestSuitFixture

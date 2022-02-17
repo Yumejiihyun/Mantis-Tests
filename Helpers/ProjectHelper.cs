@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace MantisTests
+namespace Mantis_Tests
 {
     public class ProjectHelper : HelperBase
     {

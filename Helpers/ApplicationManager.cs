@@ -3,7 +3,7 @@ using OpenQA.Selenium.Edge;
 using System.Threading;
 using NUnit.Framework;
 
-namespace MantisTests
+namespace Mantis_Tests
 {
     public class ApplicationManager
     {
@@ -17,6 +17,7 @@ namespace MantisTests
             LoginHelper = new LoginHelper(this);
             NavigationHelper = new NavigationHelper(this);
             ProjectHelper = new ProjectHelper(this);
+            APIHelper = new APIHelper(this);
         }
 
         public static ApplicationManager GetInstance()
@@ -32,6 +33,8 @@ namespace MantisTests
         public LoginHelper LoginHelper { get; set; }
         public NavigationHelper NavigationHelper { get; set; }
         public ProjectHelper ProjectHelper { get; set; }
+        public APIHelper APIHelper { get; private set; }
+
         public void LoginAsAdmin() => LoginHelper.OpenHomePage().Login(admin);
     }
 }

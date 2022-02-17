@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace MantisTests
+namespace Mantis_Tests
 {
     [TestFixture]
     public class ProjectTests : TestBase
@@ -14,13 +14,14 @@ namespace MantisTests
         [Test]
         public void NewProjectTest()
         {
+            var adminData = new AccountData("administrator", "root");
             app.NavigationHelper.GoToProjectsPage();
 
-            List<ProjectData> oldList = app.ProjectHelper.GetProjectsList();
+            List<ProjectData> oldList = app.APIHelper.GetProjectsList(adminData);
             oldList.Add(new ProjectData("NewProjectTest"));
 
             app.ProjectHelper.CreateNewProject("NewProjectTest");
-            List<ProjectData> newList = app.ProjectHelper.GetProjectsList();
+            List<ProjectData> newList = app.APIHelper.GetProjectsList(adminData);
 
             oldList.Sort();
             newList.Sort();
@@ -30,19 +31,22 @@ namespace MantisTests
         [Test]
         public void DeleteProjectTest()
         {
+            var adminData = new AccountData("administrator", "root");
             app.NavigationHelper.GoToProjectsPage();
 
-            List<ProjectData> oldList = app.ProjectHelper.GetProjectsList();
+            List<ProjectData> oldList = app.APIHelper.GetProjectsList(adminData);
             if (oldList.Count == 0)
             {
-                oldList.Add(new ProjectData("DeleteProjectTest"));
-                app.ProjectHelper.CreateNewProject("DeleteProjectTest");
+                var projectToAdd = new ProjectData("DeleteProjectTest");
+                oldList.Add(projectToAdd);
+                app.APIHelper.CreateNewProject(adminData, projectToAdd);
+                app.driver.Navigate().Refresh();
             }
             ProjectData toRemove = oldList[0];
             oldList.RemoveAt(0);
 
             app.ProjectHelper.DeleteProject(toRemove);
-            List<ProjectData> newList = app.ProjectHelper.GetProjectsList();
+            List<ProjectData> newList = app.APIHelper.GetProjectsList(adminData);
 
             oldList.Sort();
             newList.Sort();

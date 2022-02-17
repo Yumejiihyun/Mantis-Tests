@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace MantisTests
+namespace Mantis_Tests
 {
     public class TestBase
     {
